@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tester Chip - Transform Your PCB Ideas into Reality</title>
+    <style id="dark-mode-style"></style>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 0 2px 8px #223a5e, 0 1px 0 #000;
+        }
+
+        .logo::before {
+            content: "⚡";
+            margin-right: 8px;
+            color: #FFD700;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            text-shadow: 0 2px 8px #223a5e, 0 1px 0 #000;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            animation: slideInUp 1s ease-out;
+        }
+
+        .nav-darkmode-btn {
+            font-size: 1rem;
+            margin-left: 0.5rem;
+            text-shadow: 0 2px 8px #223a5e, 0 1px 0 #000;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(102,126,234,0.10);
+            animation: slideInUp 1s ease-out 0.2s;
+            cursor: pointer;
+        }
+
+        .nav-darkmode-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(102,126,234,0.18);
+            background: linear-gradient(45deg, #764ba2, #667eea);
+        }
+
+        .nav-links a:hover,
+        .nav-darkmode-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: slideInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: slideInUp 1s ease-out 0.3s both;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #FF6B6B, #FF8E53);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            animation: slideInUp 1s ease-out 0.6s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 4rem 0;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            z-index: 2;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .submission-form {
+            background: linear-gradient(120deg, #f7fafd 60%, #e3e8ee 100%);
+            border-radius: 18px;
+            padding: 3rem 2.5rem;
+            margin: 4rem 0;
+            box-shadow: 0 8px 32px rgba(60, 72, 88, 0.10), 0 1.5px 0 #b0b6be;
+            color: #1a1a1a;
+            border: 1.5px solid #b0b6be;
+        }
+
+        .submission-form h2 {
+            color: #223a5e;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .submission-form label {
+            color: #223a5e;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+
+        .submission-form input,
+        .submission-form textarea,
+        .submission-form select {
+            background: #fff;
+            color: #222;
+            border: 1.5px solid #b0b6be;
+            border-radius: 8px;
+            font-size: 1rem;
+            padding: 0.9rem 1.1rem;
+            margin-top: 0.2rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .submission-form input:focus,
+        .submission-form textarea:focus,
+        .submission-form select:focus {
+            border-color: #3b5998;
+            box-shadow: 0 0 8px #3b599855;
+            outline: none;
+        }
+
+        .submission-form input[type="submit"],
+        .submission-form button.submit-btn {
+            background: linear-gradient(90deg, #223a5e 0%, #3b5998 100%);
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(60, 72, 88, 0.10);
+        }
+
+        .submission-form input[type="submit"]:hover,
+        .submission-form button.submit-btn:hover {
+            background: linear-gradient(90deg, #3b5998 0%, #223a5e 100%);
+            box-shadow: 0 6px 20px rgba(60, 72, 88, 0.18);
+            transform: translateY(-2px);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 1rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .process-steps {
+            padding: 4rem 0;
+            text-align: center;
+            color: white;
+        }
+
+        .process-steps h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .step {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .step:hover {
+            transform: translateY(-10px) scale(1.05);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: #333;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            nav .language-cool-wrapper {
+                margin: 1rem 0 0 0;
+            }
+            nav > div {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+        }
+
+        .notification {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+            transform: translateX(400px);
+            transition: all 0.5s ease;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        /* Add cool styles for language selector */
+.language-cool-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255,255,255,0.18);
+    border-radius: 12px;
+    padding: 0.3rem 1rem;
+    box-shadow: 0 2px 8px rgba(102,126,234,0.12);
+    transition: box-shadow 0.3s;
+}
+.language-cool-wrapper:hover {
+    box-shadow: 0 4px 16px rgba(102,126,234,0.22);
+}
+.globe-icon {
+    font-size: 1.5rem;
+    color: #223a5e;
+    filter: drop-shadow(0 2px 4px #667eea55);
+    margin-right: 0.2rem;
+    transition: color 0.3s;
+}
+.language-cool-wrapper:hover .globe-icon {
+    color: #764ba2;
+}
+.cool-language-select {
+    background: linear-gradient(90deg, #f7fafd 60%, #e3e8ee 100%);
+    color: #223a5e;
+    border: 1.5px solid #b0b6be;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.4rem 1.2rem;
+    box-shadow: 0 2px 8px rgba(102,126,234,0.10);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.cool-language-select:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 10px rgba(102,126,234,0.18);
+}
+
+/* Star rating styles */
+.star-rating {
+    display: flex;
+    gap: 0.3rem;
+    font-size: 2rem;
+    margin: 0.5rem 0 1.5rem 0;
+    cursor: pointer;
+}
+.star {
+    color: #b0b6be;
+    transition: color 0.2s;
+    user-select: none;
+}
+.star.selected,
+.star:hover,
+.star:hover ~ .star {
+    color: #FFD700;
+}
+
+/* Ratings display styles */
+.ratings-display {
+    background: linear-gradient(90deg, #f7fafd 60%, #e3e8ee 100%);
+    border-radius: 18px;
+    box-shadow: 0 4px 16px rgba(102,126,234,0.10);
+    padding: 2rem 1.5rem;
+    margin: 2rem auto 0 auto;
+    max-width: 400px;
+}
+#average-rating .star {
+    color: #b0b6be;
+    transition: color 0.2s;
+}
+#average-rating .star.selected {
+    color: #FFD700;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container" style="display:flex;align-items:center;justify-content:space-between;">
+            <div class="logo">Tester Chip</div>
+            <div style="display:flex;align-items:center;gap:2rem;">
+                <ul class="nav-links">
+                    <li><a href="#home" data-i18n="navHome">Home</a></li>
+                    <li><a href="#services" data-i18n="navServices">Services</a></li>
+                    <li><a href="#submit" data-i18n="navSubmit">Submit Idea</a></li>
+                    <li><a href="#contact" data-i18n="navContact">Contact</a></li>
+                    <li>
+                        <button id="darkModeToggle" class="nav-darkmode-btn" style="background:none;color:#fff;font-weight:600;border:none;padding:0.5rem 1rem;border-radius:20px;cursor:pointer;transition:all 0.3s;text-shadow:0 2px 8px #223a5e,0 1px 0 #000;">🌙 Dark Mode</button>
+                    </li>
+                </ul>
+                <div class="language-cool-wrapper">
+                    <span class="globe-icon" title="Select Language">🌐</span>
+                    <select id="languageSwitcher" class="cool-language-select">
+                        <option value="en">English</option>
+                        <option value="hi">हिन्दी</option>
+                    </select>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero container">
+            <h1 data-i18n="heroTitle">Transform Your PCB Ideas into Reality</h1>
+            <p data-i18n="heroDesc">Professional digital PCB design services that bring your electronic concepts to life</p>
+            <a href="#submit" class="cta-button" data-i18n="heroCTA">Submit Your Idea</a>
+        </section>
+
+        <section id="services" class="container">
+            <div class="features">
+                <div class="feature-card">
+                    <span class="feature-icon">🔧</span>
+                    <h3 data-i18n="feature1Title">Custom PCB Design</h3>
+                    <p data-i18n="feature1Desc">Transform your ideas into professional PCB layouts with industry-standard tools and expertise</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">⚡</span>
+                    <h3 data-i18n="feature2Title">Fast Turnaround</h3>
+                    <p data-i18n="feature2Desc">Get your digital PCB designs delivered quickly without compromising on quality</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🎯</span>
+                    <h3 data-i18n="feature3Title">Precision Engineering</h3>
+                    <p data-i18n="feature3Desc">Every design is crafted with attention to detail, ensuring optimal performance and reliability</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="process-steps container">
+            <h2 data-i18n="howItWorks">How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Submit Your Idea</h3>
+                    <p>Share your PCB concept, requirements, and specifications through our simple form</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Design Review</h3>
+                    <p>Our skilled PCB designers analyze your requirements and provide detailed feedback</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Design Creation</h3>
+                    <p>We bring your ideas to life using advanced PCB design software and best practices</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Delivery</h3>
+                    <p>Receive your completed PCB design files ready for manufacturing</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="submit" class="container">
+            <div class="submission-form">
+                <h2 style="text-align: center; margin-bottom: 2rem; color: #333;" data-i18n="formTitle">Submit Your PCB Idea</h2>
+<form id="pcbForm" action="https://formspree.io/f/mrbllabp" method="POST">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Full Name *</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="company">Company/Organization</label>
+                                <input type="text" id="company" name="company">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="project-title">Project Title *</label>
+                            <input type="text" id="project-title" name="project-title" placeholder="e.g., Arduino-based Temperature Monitor" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="pcb-type">PCB Type *</label>
+                                <select id="pcb-type" name="pcb-type" required>
+                                    <option value="">Select PCB Type</option>
+                                    <option value="single-layer">Single Layer</option>
+                                    <option value="double-layer">Double Layer</option>
+                                    <option value="multi-layer">Multi Layer (4+)</option>
+                                    <option value="flexible">Flexible PCB</option>
+                                    <option value="not-sure">Not Sure</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="complexity">Project Complexity *</label>
+                                <select id="complexity" name="complexity" required>
+                                    <option value="">Select Complexity</option>
+                                    <option value="simple">Simple (Basic circuits)</option>
+                                    <option value="moderate">Moderate (Mixed signals)</option>
+                                    <option value="complex">Complex (High-speed, RF)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description">Project Description *</label>
+                            <textarea id="description" name="description" rows="5" placeholder="Describe your PCB idea, functionality, components needed, size constraints, and any specific requirements..." required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="timeline">Desired Timeline *</label>
+                            <select id="timeline" name="timeline" required>
+                                <option value="">Select Timeline</option>
+                                <option value="rush">Rush (1-3 days)</option>
+                                <option value="standard">Standard (1-2 weeks)</option>
+                                <option value="flexible">Flexible (2+ weeks)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="additional-info">Additional Information</label>
+                            <textarea id="additional-info" name="additional-info" rows="3" placeholder="Any additional requirements, constraints, or questions..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="file-upload">Upload Reference Files (schematics, images, PDFs)</label>
+                            <input type="file" id="file-upload" name="file-upload" multiple>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="star-rating">Rate Our Service *</label>
+                            <div id="star-rating" class="star-rating">
+                                <span class="star" data-value="1">★</span>
+                                <span class="star" data-value="2">★</span>
+                                <span class="star" data-value="3">★</span>
+                                <span class="star" data-value="4">★</span>
+                                <span class="star" data-value="5">★</span>
+                                <input type="hidden" name="service-rating" id="service-rating" value="0" required>
+                            </div>
+                        </div>
+
+                    <button type="submit" class="submit-btn">Submit PCB Idea</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="ratings" class="container">
+    <div class="ratings-display">
+        <h2 style="text-align:center; color:#223a5e; margin-bottom:1rem;">User Ratings</h2>
+        <p style="text-align:center; color:#333; margin-bottom:1rem;">Professional PCB Design Services</p>
+        <div id="average-rating" class="star-rating" style="justify-content:center;">
+            <span class="star" data-value="1">★</span>
+            <span class="star" data-value="2">★</span>
+            <span class="star" data-value="3">★</span>
+            <span class="star" data-value="4">★</span>
+            <span class="star" data-value="5">★</span>
+        </div>
+        <div id="rating-info" style="text-align:center; color:#333; font-size:1.1rem; margin-top:0.5rem;">Average: <span id="avg-value">4.9</span> / 5 (<span id="total-ratings">10</span> verified reviews)</div>
+        <div style="text-align:center; margin-top:1.5rem;">
+            <p style="color:#333; font-size:0.9rem; margin-bottom:0.5rem;">🏆 Successfully Completed 10+ Projects Since 2025</p>
+            <p style="color:#333; font-size:0.9rem; margin-bottom:0.5rem;">⚡ Average Response Time: 12-24 Hours</p>
+            <p style="color:#333; font-size:0.9rem; margin-bottom:0.5rem;">💪 We have a very busy schedule, still we find a way out</p>
+        </div>
+    </div>
+</section>
+    </main>
+
+
+
+    <footer id="contact">
+        <div class="container">
+            <h3>Tester Chip</h3>
+            <p data-i18n="footerDesc">Professional PCB Design Services Since 2024</p>
+            <div style="margin: 1rem 0;">
+                <p style="margin-bottom: 0.5rem;">🏢 Tester Chip Electronics</p>
+                <p style="margin-bottom: 0.5rem;">� testerofscratchcode@gmail.com</p>
+                <p style="margin-bottom: 0.5rem;">🔒 Secure Project Data Handling</p>
+            </div>
+            <p data-i18n="footerCopy">&copy; 2025 Tester Chip. All rights reserved. | <a href="#privacy" style="color:white;">Privacy Policy</a> | <a href="#terms" style="color:white;">Terms of Service</a></p>
+        </div>
+    </footer>
+    <script>
+        // Handle form submission with AJAX, including file upload
+        document.addEventListener('DOMContentLoaded', function() {
+            var form = document.getElementById('pcbForm');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    var formData = new FormData(form);
+                    // Add star rating to the email message
+                    var starRating = document.getElementById('service-rating').value;
+                    if (starRating && starRating !== "0") {
+                        formData.append("star-rating", starRating);
+                    }
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('POST', form.action);
+                    xhr.setRequestHeader('Accept', 'application/json');
+                    xhr.onreadystatechange = function() {
+                        if (xhr.readyState === XMLHttpRequest.DONE) {
+                            if (xhr.status === 200) {
+                                form.reset();
+                                // Optionally, you can scroll to the form or keep focus here
+                            } else {
+                                alert('There was an error submitting the form. Please try again.');
+                            }
+                        }
+                    };
+                    xhr.send(formData);
+                });
+            }
+
+            // Multi-language support
+            var translations = {
+                en: {
+                    navHome: "Home",
+                    navServices: "Services",
+                    navSubmit: "Submit Idea",
+                    navContact: "Contact",
+                    heroTitle: "Transform Your PCB Ideas into Reality",
+                    heroDesc: "Professional digital PCB design services that bring your electronic concepts to life",
+                    heroCTA: "Submit Your Idea",
+                    feature1Title: "Custom PCB Design",
+                    feature1Desc: "Transform your ideas into professional PCB layouts with industry-standard tools and expertise",
+                    feature2Title: "Fast Turnaround",
+                    feature2Desc: "Get your digital PCB designs delivered quickly without compromising on quality",
+                    feature3Title: "Precision Engineering",
+                    feature3Desc: "Every design is crafted with attention to detail, ensuring optimal performance and reliability",
+                    howItWorks: "How It Works",
+                    formTitle: "Submit Your PCB Idea",
+                    footerDesc: "Transforming Ideas into Digital PCB Designs",
+                    footerCopy: "© 2025 Tester Chip. All rights reserved."
+                },
+                hi: {
+                    navHome: "होम",
+                    navServices: "सेवाएँ",
+                    navSubmit: "पीसीबी आइडिया सबमिट करें",
+                    navContact: "संपर्क करें",
+                    heroTitle: "अपने पीसीबी विचारों को वास्तविकता में बदलें",
+                    heroDesc: "पेशेवर डिजिटल पीसीबी डिजाइन सेवाएँ जो आपके इलेक्ट्रॉनिक विचारों को जीवन देती हैं",
+                    heroCTA: "आइडिया सबमिट करें",
+                    feature1Title: "कस्टम पीसीबी डिजाइन",
+                    feature1Desc: "अपने विचारों को उद्योग-मानक टूल्स और विशेषज्ञता के साथ पेशेवर पीसीबी लेआउट में बदलें",
+                    feature2Title: "तेज़ डिलीवरी",
+                    feature2Desc: "गुणवत्ता से समझौता किए बिना अपने डिजिटल पीसीबी डिज़ाइन जल्दी प्राप्त करें",
+                    feature3Title: "सटीक इंजीनियरिंग",
+                    feature3Desc: "हर डिज़ाइन को ध्यानपूर्वक तैयार किया जाता है, जिससे सर्वोत्तम प्रदर्शन और विश्वसनीयता सुनिश्चित होती है",
+                    howItWorks: "कैसे काम करता है",
+                    formTitle: "अपना पीसीबी आइडिया सबमिट करें",
+                    footerDesc: "विचारों को डिजिटल पीसीबी डिज़ाइन में बदलना",
+                    footerCopy: "© 2025 टेस्टर चिप. सर्वाधिकार सुरक्षित."
+                }
+            };
+            var switcher = document.getElementById('languageSwitcher');
+            function setLanguage(lang) {
+                var dict = translations[lang] || translations['en'];
+                document.querySelectorAll('[data-i18n]').forEach(function(el) {
+                    var key = el.getAttribute('data-i18n');
+                    if (dict[key]) {
+                        el.textContent = dict[key];
+                    }
+                });
+            }
+            if (switcher) {
+                switcher.addEventListener('change', function() {
+                    setLanguage(this.value);
+                });
+                setLanguage(switcher.value);
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add parallax effect to hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+        });
+
+        // Add animation on scroll for feature cards
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'slideInUp 0.8s ease-out';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .step').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Star rating logic
+    document.addEventListener('DOMContentLoaded', function() {
+        var stars = document.querySelectorAll('.star-rating .star');
+        var ratingInput = document.getElementById('service-rating');
+        stars.forEach(function(star) {
+            star.addEventListener('mouseover', function() {
+                var val = parseInt(star.getAttribute('data-value'));
+                stars.forEach(function(s, i) {
+                    s.classList.toggle('selected', i < val);
+                });
+            });
+            star.addEventListener('mouseout', function() {
+                var current = parseInt(ratingInput.value);
+                stars.forEach(function(s, i) {
+                    s.classList.toggle('selected', i < current);
+                });
+            });
+            star.addEventListener('click', function() {
+                var val = parseInt(star.getAttribute('data-value'));
+                ratingInput.value = val;
+                stars.forEach(function(s, i) {
+                    s.classList.toggle('selected', i < val);
+                });
+            });
+        });
+    });
+
+    // Ratings display logic (demo, not persistent)
+    var avgValue = 4.9; // Demo average rating - showing high satisfaction despite busy schedule
+    var totalRatings = 10; // Demo total ratings - showing high volume of completed projects
+    function updateAverageRatingDisplay() {
+        var avg = Math.round(avgValue);
+        var stars = document.querySelectorAll('#average-rating .star');
+        stars.forEach(function(star, i) {
+            star.classList.remove('selected');
+            if (i < avg) {
+                star.classList.add('selected');
+            }
+        });
+        document.getElementById('avg-value').textContent = avgValue.toFixed(1);
+        document.getElementById('total-ratings').textContent = totalRatings;
+    }
+    document.addEventListener('DOMContentLoaded', updateAverageRatingDisplay);
+    // Dark mode toggle logic
+    document.addEventListener('DOMContentLoaded', function() {
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const darkModeStyle = document.getElementById('dark-mode-style');
+        let darkMode = false;
+        function setDarkMode(on) {
+            darkMode = on;
+            if (on) {
+                darkModeStyle.textContent = `
+                body {
+                    background: linear-gradient(135deg, #181c2b 0%, #22223b 100%) !important;
+                    color: #ffffff !important;
+                }
+                .container {
+                    background: transparent !important;
+                    color: #ffffff !important;
+                }
+                .submission-form {
+                    background: rgba(40, 44, 52, 0.95) !important;
+                    color: #ffffff !important;
+                    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+                    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+                }
+                .submission-form h2 {
+                    color: #ffffff !important;
+                }
+                .form-group label {
+                    color: #ffffff !important;
+                    font-weight: 600 !important;
+                }
+                .ratings-display {
+                    background: rgba(40, 44, 52, 0.95) !important;
+                    color: #ffffff !important;
+                    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+                }
+                .ratings-display h2 {
+                    color: #ffffff !important;
+                }
+                #rating-info {
+                    color: #ffffff !important;
+                }
+                .ratings-display p {
+                    color: #ffffff !important;
+                }
+                header, .feature-card, .step, footer {
+                    background: rgba(30, 30, 40, 0.95) !important;
+                    color: #ffffff !important;
+                    border-color: rgba(255, 255, 255, 0.2) !important;
+                }
+                .form-group input, .form-group textarea, .form-group select, .cool-language-select {
+                    background: rgba(40, 44, 52, 0.95) !important;
+                    color: #ffffff !important;
+                    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+                }
+                .form-group input::placeholder, .form-group textarea::placeholder {
+                    color: #cccccc !important;
+                }
+                .form-group input:focus, .form-group textarea:focus, .form-group select:focus, .cool-language-select:focus {
+                    border-color: #667eea !important;
+                    box-shadow: 0 0 10px rgba(102, 126, 234, 0.3) !important;
+                    background: rgba(50, 54, 62, 0.95) !important;
+                }
+                .submit-btn, #darkModeToggle {
+                    background: linear-gradient(90deg, #223a5e 0%, #764ba2 100%) !important;
+                    color: #ffffff !important;
+                    border-radius: 50px !important;
+                    font-weight: 600 !important;
+                    letter-spacing: 0.5px !important;
+                    transition: all 0.3s !important;
+                    box-shadow: 0 4px 15px rgba(102,126,234,0.10) !important;
+                    animation: slideInUp 1s ease-out 0.2s !important;
+                    display: flex !important;
+                    align-items: center !important;
+                    gap: 0.5rem !important;
+                    border: none !important;
+                    padding: 0.5rem 1.5rem !important;
+                }
+                .submit-btn:hover, #darkModeToggle:hover {
+                    background: linear-gradient(90deg, #764ba2 0%, #223a5e 100%) !important;
+                    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+                }
+                .star {
+                    color: #666666 !important;
+                }
+                .star.selected {
+                    color: #FFD700 !important;
+                }
+                .nav-links a, .nav-darkmode-btn {
+                    color: #ffffff !important;
+                    text-shadow: 0 2px 8px #223a5e, 0 1px 0 #000 !important;
+                    background: none !important;
+                    border-radius: 20px !important;
+                    font-weight: 600 !important;
+                    letter-spacing: 0.5px !important;
+                    transition: all 0.3s !important;
+                    animation: slideInUp 1s ease-out !important;
+                }
+                .nav-links a:hover, .nav-darkmode-btn:hover {
+                    background: rgba(255,255,255,0.2) !important;
+                    color: #ffffff !important;
+                    transform: translateY(-2px) !important;
+                }
+                .feature-icon {
+                    text-shadow: 0 2px 4px rgba(0,0,0,0.3) !important;
+                }
+                `;
+                darkModeToggle.textContent = '☀️ Light Mode';
+            } else {
+                darkModeStyle.textContent = '';
+                darkModeToggle.textContent = '🌙 Dark Mode';
+            }
+        }
+        darkModeToggle.addEventListener('click', function() {
+            setDarkMode(!darkMode);
+            if (window.localStorage) {
+                localStorage.setItem('darkMode', darkMode ? 'true' : 'false');
+            }
+        });
+        if (window.localStorage && localStorage.getItem('darkMode') === 'true') {
+            setDarkMode(true);
+        }
+    });
+    </script>
+</body>
+</html>
+</body>
+</html>
+    </script>
+</body>
+</html>
