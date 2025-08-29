@@ -3,8 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tester Chip - Transform Your PCB Ideas into Reality</title>
-    <style id="dark-mode-style"></style>
+    <title>Tester Chip - Professional Digital PCB Design Services</title>
+    <meta name="description" content="Professional digital PCB design services - Expert circuit board layout and schematic design for your electronic projects">
+    <meta name="keywords" content="PCB design, circuit board layout, schematic design, electronics design, digital PCB services">
+    
+    <!-- Open Graph tags -->
+    <meta property="og:title" content="Tester Chip - Professional Digital PCB Design Services">
+    <meta property="og:description" content="Expert digital PCB design services. High-quality circuit board layouts and schematics for your electronic innovations.">
+    <meta property="og:type" content="website">
+    
+    <!-- Fonts and Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         * {
             margin: 0;
@@ -12,24 +25,57 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --gradient-start: #4f46e5;
+            --gradient-middle: #7c3aed;
+            --gradient-end: #06b6d4;
+            --accent-gold: #f59e0b;
+            --accent-orange: #f97316;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        .dark {
+            --gradient-start: #1e1b4b;
+            --gradient-middle: #312e81;
+            --gradient-end: #1e40af;
+            --glass-bg: rgba(0, 0, 0, 0.2);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Inter', system-ui, sans-serif;
             line-height: 1.6;
             color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-middle) 50%, var(--gradient-end) 100%);
+            background-attachment: fixed;
             min-height: 100vh;
+            margin: 0;
+            padding: 0;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+            width: 100%;
         }
 
-        header {
-            background: rgba(255, 255, 255, 0.1);
+        /* Ensure smooth layout on all screen sizes */
+        .section {
+            width: 100%;
+            overflow-x: hidden;
+            background: var(--glass-bg);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+        }
+
+        /* Header Styles */
+        header {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
             padding: 1rem 0;
             position: sticky;
             top: 0;
@@ -47,12 +93,13 @@
             font-weight: bold;
             color: #fff;
             text-shadow: 0 2px 8px #223a5e, 0 1px 0 #000;
+            display: flex;
+            align-items: center;
         }
 
-        .logo::before {
-            content: "⚡";
+        .logo i {
+            color: var(--accent-gold);
             margin-right: 8px;
-            color: #FFD700;
         }
 
         .nav-links {
@@ -61,22 +108,26 @@
             gap: 2rem;
         }
 
-        .nav-links a {
+        .nav-links a, .nav-links button {
             color: #fff;
             text-decoration: none;
+            background: none;
+            border: none;
+            cursor: pointer;
             transition: all 0.3s ease;
             padding: 0.5rem 1rem;
             border-radius: 20px;
             text-shadow: 0 2px 8px #223a5e, 0 1px 0 #000;
             font-weight: 600;
             letter-spacing: 0.5px;
-            animation: slideInUp 1s ease-out;
         }
 
-        .nav-darkmode-btn {
-            font-size: 1rem;
-            margin-left: 0.5rem;
-            text-shadow: 0 2px 8px #223a5e, 0 1px 0 #000;
+        .nav-links a:hover, .nav-links button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .theme-toggle {
             background: linear-gradient(45deg, #667eea, #764ba2);
             color: #fff;
             border: none;
@@ -86,27 +137,54 @@
             letter-spacing: 0.5px;
             transition: all 0.3s;
             box-shadow: 0 4px 15px rgba(102,126,234,0.10);
-            animation: slideInUp 1s ease-out 0.2s;
+            cursor: pointer;
+            margin-left: 1rem;
+        }
+
+        .theme-toggle:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(102,126,234,0.18);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: var(--glass-bg);
+            color: #fff;
+            border: none;
+            padding: 0.5rem;
+            border-radius: 8px;
             cursor: pointer;
         }
 
-        .nav-darkmode-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(102,126,234,0.18);
-            background: linear-gradient(45deg, #764ba2, #667eea);
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
         }
 
-        .nav-links a:hover,
-        .nav-darkmode-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-            color: #fff;
-            transform: translateY(-2px);
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-top: 1px solid var(--glass-border);
         }
 
+        /* Hero Section */
         .hero {
             text-align: center;
             padding: 4rem 0;
             color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: none;
+            opacity: 0;
         }
 
         .hero h1 {
@@ -116,15 +194,33 @@
             animation: slideInUp 1s ease-out;
         }
 
+        .text-gradient {
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-orange));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
         .hero p {
             font-size: 1.3rem;
             margin-bottom: 2rem;
             opacity: 0.9;
             animation: slideInUp 1s ease-out 0.3s both;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .cta-button {
-            background: linear-gradient(45deg, #FF6B6B, #FF8E53);
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            animation: slideInUp 1s ease-out 0.6s both;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--accent-gold), var(--accent-orange));
             color: white;
             padding: 1rem 2rem;
             border: none;
@@ -134,40 +230,87 @@
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            animation: slideInUp 1s ease-out 0.6s both;
         }
 
-        .cta-button:hover {
-            transform: translateY(-3px);
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.05);
             box-shadow: 0 6px 20px rgba(0,0,0,0.3);
         }
 
+        .btn-secondary {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 1rem 2rem;
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px) scale(1.05);
+        }
+
+        /* Features Section */
         .features {
+            padding: 4rem 0;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
-            padding: 4rem 0;
         }
 
         .feature-card {
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--glass-bg);
             backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 2rem;
             text-align: center;
             color: white;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid var(--glass-border);
             transition: all 0.3s ease;
             position: relative;
         }
 
         .feature-card:hover {
-            transform: translateY(-10px) scale(1.05);
+            transform: translateY(-10px) scale(1.08);
             background: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-            z-index: 2;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            z-index: 10;
         }
 
         .feature-icon {
@@ -181,67 +324,111 @@
             margin-bottom: 1rem;
         }
 
-        .submission-form {
-            background: linear-gradient(120deg, #f7fafd 60%, #e3e8ee 100%);
-            border-radius: 18px;
-            padding: 3rem 2.5rem;
-            margin: 4rem 0;
-            box-shadow: 0 8px 32px rgba(60, 72, 88, 0.10), 0 1.5px 0 #b0b6be;
-            color: #1a1a1a;
-            border: 1.5px solid #b0b6be;
+        .star-rating {
+            display: flex;
+            gap: 0.5rem;
+            margin: 1rem 0;
+            justify-content: center;
         }
 
-        .submission-form h2 {
-            color: #223a5e;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-        }
-
-        .submission-form label {
-            color: #223a5e;
-            font-weight: 600;
-            margin-bottom: 0.4rem;
-        }
-
-        .submission-form input,
-        .submission-form textarea,
-        .submission-form select {
-            background: #fff;
-            color: #222;
-            border: 1.5px solid #b0b6be;
-            border-radius: 8px;
-            font-size: 1rem;
-            padding: 0.9rem 1.1rem;
-            margin-top: 0.2rem;
-            transition: border-color 0.2s, box-shadow 0.2s;
-        }
-
-        .submission-form input:focus,
-        .submission-form textarea:focus,
-        .submission-form select:focus {
-            border-color: #3b5998;
-            box-shadow: 0 0 8px #3b599855;
-            outline: none;
-        }
-
-        .submission-form input[type="submit"],
-        .submission-form button.submit-btn {
-            background: linear-gradient(90deg, #223a5e 0%, #3b5998 100%);
-            color: #fff;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: bold;
+        .star {
+            font-size: 2rem;
+            color: #ddd;
             cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(60, 72, 88, 0.10);
+            transition: transform 0.3s ease, color 0.3s;
         }
 
-        .submission-form input[type="submit"]:hover,
-        .submission-form button.submit-btn:hover {
-            background: linear-gradient(90deg, #3b5998 0%, #223a5e 100%);
-            box-shadow: 0 6px 20px rgba(60, 72, 88, 0.18);
-            transform: translateY(-2px);
+        .star.active {
+            color: var(--accent-gold);
+        }
+
+        /* Unified zoom effect for all relevant elements */
+        .star:hover,
+        .feature-icon:hover,
+        .step-icon:hover,
+        .logo:hover,
+        .nav-links a:hover,
+        .file-upload:hover {
+            transform: scale(1.15);
+            transition: transform 0.3s ease, color 0.3s;
+        }
+
+        .star:hover {
+            color: var(--accent-gold);
+        }
+
+        /* Process Section */
+        .process {
+            padding: 4rem 0;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .step {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            color: white;
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .step:hover {
+            transform: translateY(-10px) scale(1.08);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            z-index: 10;
+        }
+
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, var(--accent-gold), var(--accent-orange));
+            color: #333;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .step-icon {
+            font-size: 3rem;
+            margin: 1rem 0;
+            display: block;
+        }
+
+        .step h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Form Section */
+        .form-section {
+            padding: 4rem 0;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+        }
+
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
         }
 
         .form-group {
@@ -251,7 +438,7 @@
         .form-group label {
             display: block;
             margin-bottom: 0.5rem;
-            font-weight: bold;
+            font-weight: 600;
             color: #333;
         }
 
@@ -263,6 +450,7 @@
             border: 2px solid #ddd;
             border-radius: 10px;
             font-size: 1rem;
+            font-family: inherit;
             transition: all 0.3s ease;
         }
 
@@ -272,12 +460,41 @@
             outline: none;
             border-color: #667eea;
             box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
+            transform: scale(1.02);
+        }
+
+        .form-group input:hover,
+        .form-group textarea:hover,
+        .form-group select:hover {
+            transform: scale(1.01);
+            border-color: #bbb;
         }
 
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1rem;
+        }
+
+        .file-upload {
+            border: 2px dashed #ddd;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .file-upload:hover {
+            border-color: #667eea;
+            background: rgba(102, 126, 234, 0.05);
+        }
+
+        .file-upload i {
+            font-size: 3rem;
+            color: #999;
+            margin-bottom: 1rem;
+            display: block;
         }
 
         .submit-btn {
@@ -295,70 +512,123 @@
         }
 
         .submit-btn:hover {
-            transform: translateY(-2px);
+            transform: translateY(-2px) scale(1.03);
             box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
         }
 
-        .process-steps {
+        /* Contact Section */
+        .contact {
             padding: 4rem 0;
-            text-align: center;
-            color: white;
         }
 
-        .process-steps h2 {
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .steps {
+        .contact-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
 
-        .step {
-            background: rgba(255, 255, 255, 0.1);
+        .contact-card {
+            background: var(--glass-bg);
             backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 2rem;
-            position: relative;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            color: white;
+            border: 1px solid var(--glass-border);
             transition: all 0.3s ease;
+            position: relative;
+            word-wrap: break-word;
+            word-break: break-all;
+            overflow-wrap: break-word;
         }
 
-        .step:hover {
-            transform: translateY(-10px) scale(1.05);
+        .contact-card:hover {
+            transform: translateY(-5px) scale(1.05);
             background: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            z-index: 10;
         }
 
-        .step-number {
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(45deg, #FFD700, #FFA500);
-            color: #333;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1.2rem;
+        .contact-card p {
+            word-wrap: break-word;
+            word-break: break-all;
+            overflow-wrap: break-word;
+            hyphens: auto;
         }
 
+        .contact-card i {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .contact-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
         footer {
             background: rgba(0, 0, 0, 0.8);
             color: white;
-            text-align: center;
-            padding: 2rem 0;
+            padding: 3rem 0 1rem;
             margin-top: 4rem;
         }
 
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand i {
+            font-size: 1.5rem;
+            color: var(--accent-gold);
+        }
+
+        .footer-brand span {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links h3 {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            display: block;
+            padding: 0.25rem 0;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Animations */
         @keyframes slideInUp {
             from {
                 opacity: 0;
@@ -370,628 +640,1876 @@
             }
         }
 
+        .animate-slide-up {
+            animation: slideInUp 0.6s ease-out;
+        }
+
+        /* Zoom effects for various elements */
+        .feature-icon:hover, .step-icon:hover {
+            transform: scale(1.15);
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            transform: scale(1.1);
+        }
+
+        .file-upload:hover {
+            transform: scale(1.02);
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .mobile-menu.active {
+                display: flex;
+            }
+
             .hero h1 {
                 font-size: 2.5rem;
             }
-            
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
             .form-row {
                 grid-template-columns: 1fr;
             }
-            
-            .nav-links {
-                flex-direction: column;
-                gap: 1rem;
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
             }
-            nav .language-cool-wrapper {
-                margin: 1rem 0 0 0;
+
+            .section-header h2 {
+                font-size: 2rem;
             }
-            nav > div {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.5rem;
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
             }
         }
 
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 10px;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+                padding: 0 10px;
+            }
+
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+
+            .section-header p {
+                padding: 0 10px;
+            }
+
+            .form-container {
+                padding: 1.5rem 1rem;
+                margin: 0 5px;
+            }
+
+            .btn-primary, .btn-secondary {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+
+            .feature-card, .step, .contact-card {
+                padding: 1.2rem;
+                word-wrap: break-word;
+                word-break: break-all;
+                overflow-wrap: break-word;
+            }
+
+            .contact-card p {
+                font-size: 0.9rem;
+                line-height: 1.4;
+            }
+
+            .footer-content {
+                padding: 0 10px;
+            }
+        }
+
+        /* Dark mode styles */
+        .dark body {
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-middle) 50%, var(--gradient-end) 100%);
+        }
+
+        /* Color classes */
+        .text-accent { color: var(--accent-gold); }
+        .text-emerald { color: #10b981; }
+        .text-blue { color: #3b82f6; }
+        .text-purple { color: #8b5cf6; }
+        .text-red { color: #ef4444; }
+        .text-green { color: #22c55e; }
+
+        /* Notification */
         .notification {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: linear-gradient(45deg, #4CAF50, #45a049);
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #22c55e, #16a34a);
             color: white;
-            padding: 1rem 2rem;
+            padding: 1rem 1.5rem;
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             z-index: 1000;
-            transform: translateX(400px);
-            transition: all 0.5s ease;
+            display: none;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .notification.show {
-            transform: translateX(0);
+            display: flex;
+            animation: slideInUp 0.3s ease-out;
         }
-
-        /* Add cool styles for language selector */
-.language-cool-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: rgba(255,255,255,0.18);
-    border-radius: 12px;
-    padding: 0.3rem 1rem;
-    box-shadow: 0 2px 8px rgba(102,126,234,0.12);
-    transition: box-shadow 0.3s;
-}
-.language-cool-wrapper:hover {
-    box-shadow: 0 4px 16px rgba(102,126,234,0.22);
-}
-.globe-icon {
-    font-size: 1.5rem;
-    color: #223a5e;
-    filter: drop-shadow(0 2px 4px #667eea55);
-    margin-right: 0.2rem;
-    transition: color 0.3s;
-}
-.language-cool-wrapper:hover .globe-icon {
-    color: #764ba2;
-}
-.cool-language-select {
-    background: linear-gradient(90deg, #f7fafd 60%, #e3e8ee 100%);
-    color: #223a5e;
-    border: 1.5px solid #b0b6be;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 1rem;
-    padding: 0.4rem 1.2rem;
-    box-shadow: 0 2px 8px rgba(102,126,234,0.10);
-    outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
-}
-.cool-language-select:focus {
-    border-color: #667eea;
-    box-shadow: 0 0 10px rgba(102,126,234,0.18);
-}
-
-/* Star rating styles */
-.star-rating {
-    display: flex;
-    gap: 0.3rem;
-    font-size: 2rem;
-    margin: 0.5rem 0 1.5rem 0;
-    cursor: pointer;
-}
-.star {
-    color: #b0b6be;
-    transition: color 0.2s;
-    user-select: none;
-}
-.star.selected,
-.star:hover,
-.star:hover ~ .star {
-    color: #FFD700;
-}
-
-/* Ratings display styles */
-.ratings-display {
-    background: linear-gradient(90deg, #f7fafd 60%, #e3e8ee 100%);
-    border-radius: 18px;
-    box-shadow: 0 4px 16px rgba(102,126,234,0.10);
-    padding: 2rem 1.5rem;
-    margin: 2rem auto 0 auto;
-    max-width: 400px;
-}
-#average-rating .star {
-    color: #b0b6be;
-    transition: color 0.2s;
-}
-#average-rating .star.selected {
-    color: #FFD700;
-}
     </style>
 </head>
 <body>
+    <!-- Header -->
     <header>
-        <nav class="container" style="display:flex;align-items:center;justify-content:space-between;">
-            <div class="logo">Tester Chip</div>
-            <div style="display:flex;align-items:center;gap:2rem;">
-                <ul class="nav-links">
-                    <li><a href="#home" data-i18n="navHome">Home</a></li>
-                    <li><a href="#services" data-i18n="navServices">Services</a></li>
-                    <li><a href="#submit" data-i18n="navSubmit">Submit Idea</a></li>
-                    <li><a href="#contact" data-i18n="navContact">Contact</a></li>
-                    <li>
-                        <button id="darkModeToggle" class="nav-darkmode-btn" style="background:none;color:#fff;font-weight:600;border:none;padding:0.5rem 1rem;border-radius:20px;cursor:pointer;transition:all 0.3s;text-shadow:0 2px 8px #223a5e,0 1px 0 #000;">🌙 Dark Mode</button>
-                    </li>
-                </ul>
-                <div class="language-cool-wrapper">
-                    <span class="globe-icon" title="Select Language">🌐</span>
-                    <select id="languageSwitcher" class="cool-language-select">
-                        <option value="en">English</option>
-                        <option value="hi">हिन्दी</option>
-                    </select>
-                </div>
+        <nav class="container">
+            <div class="logo">
+                <i class="fas fa-microchip"></i>
+                <span>Tester Chip</span>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="#features" onclick="scrollToSection('features')">Features</a></li>
+                <li><a href="#process" onclick="scrollToSection('process')">Process</a></li>
+                <li><a href="#submit" onclick="scrollToSection('submit')">Submit Project</a></li>
+                <li><a href="#contact" onclick="scrollToSection('contact')">Contact</a></li>
+            </ul>
+            
+            <div style="display: flex; align-items: center;">
+                <button class="theme-toggle" onclick="toggleTheme()">
+                    <i class="fas fa-moon" id="theme-icon"></i>
+                </button>
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <div class="mobile-menu" id="mobile-menu">
+                <a href="#features" onclick="scrollToSection('features')">Features</a>
+                <a href="#process" onclick="scrollToSection('process')">Process</a>
+                <a href="#submit" onclick="scrollToSection('submit')">Submit Project</a>
+                <a href="#contact" onclick="scrollToSection('contact')">Contact</a>
             </div>
         </nav>
     </header>
 
-    <main>
-        <section id="home" class="hero container">
-            <h1 data-i18n="heroTitle">Transform Your PCB Ideas into Reality</h1>
-            <p data-i18n="heroDesc">Professional digital PCB design services that bring your electronic concepts to life</p>
-            <a href="#submit" class="cta-button" data-i18n="heroCTA">Submit Your Idea</a>
-        </section>
+    <!-- Hero Section -->
+    <section class="hero section">
+        <div class="container">
+            <h1>
+                Transform Your <span style="color: #f59e0b;">PCB</span> Ideas into Reality
+            </h1>
+            <p>
+                Professional digital PCB design services. We specialize in creating high-quality circuit board layouts and schematics for your electronic projects.
+            </p>
+            <div class="hero-buttons">
+                <a href="#submit" class="btn-primary" onclick="scrollToSection('submit')">
+                    <span>Start Your Project</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="#process" class="btn-secondary" onclick="scrollToSection('process')">
+                    <span>Learn More</span>
+                    <i class="fas fa-play"></i>
+                </a>
+            </div>
+        </div>
+    </section>
 
-        <section id="services" class="container">
-            <div class="features">
+    <!-- Features Section -->
+    <section id="features" class="features section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Features</h2>
+                <p>Professional digital PCB design solutions with cutting-edge software and industry expertise</p>
+            </div>
+            
+            <div class="features-grid">
                 <div class="feature-card">
-                    <span class="feature-icon">🔧</span>
-                    <h3 data-i18n="feature1Title">Custom PCB Design</h3>
-                    <p data-i18n="feature1Desc">Transform your ideas into professional PCB layouts with industry-standard tools and expertise</p>
+                    <i class="feature-icon fas fa-microchip text-accent"></i>
+                    <h3>Professional Design</h3>
+                    <p>Expert digital PCB design services using industry-standard software and best practices for optimal layouts.</p>
                 </div>
+                
                 <div class="feature-card">
-                    <span class="feature-icon">⚡</span>
-                    <h3 data-i18n="feature2Title">Fast Turnaround</h3>
-                    <p data-i18n="feature2Desc">Get your digital PCB designs delivered quickly without compromising on quality</p>
+                    <i class="feature-icon fas fa-shipping-fast text-emerald"></i>
+                    <h3>Fast Delivery</h3>
+                    <p>Quick turnaround on digital design files, getting your PCB layouts ready for manufacturing faster.</p>
                 </div>
+                
                 <div class="feature-card">
-                    <span class="feature-icon">🎯</span>
-                    <h3 data-i18n="feature3Title">Precision Engineering</h3>
-                    <p data-i18n="feature3Desc">Every design is crafted with attention to detail, ensuring optimal performance and reliability</p>
+                    <i class="feature-icon fas fa-award text-blue"></i>
+                    <h3>Quality Design</h3>
+                    <p>Rigorous design review processes ensure every PCB layout meets the highest technical standards.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="feature-icon fas fa-tools text-purple"></i>
+                    <h3>Custom Layouts</h3>
+                    <p>Tailored PCB designs to meet your specific project requirements and technical specifications.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="feature-icon fas fa-headset text-red"></i>
+                    <h3>Design Support</h3>
+                    <p>Dedicated design support team available throughout your project for guidance and revisions.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="feature-icon fas fa-dollar-sign text-green"></i>
+                    <h3>Affordable Rates</h3>
+                    <p>Cost-effective digital design services without compromising on quality and technical excellence.</p>
+                </div>
+
+                <div class="feature-card">
+                    <i class="feature-icon fas fa-tachometer-alt text-accent"></i>
+                    <h3>Complexity Assessment</h3>
+                    <p>We evaluate your project's technical complexity to ensure accurate planning, pricing, and delivery timelines.</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="process-steps container">
-            <h2 data-i18n="howItWorks">How It Works</h2>
-            <div class="steps">
+    <!-- Process Section -->
+    <section id="process" class="process section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Process</h2>
+                <p>From initial consultation to final design delivery, we ensure a smooth and efficient PCB design process</p>
+            </div>
+            
+            <div class="process-steps">
                 <div class="step">
                     <div class="step-number">1</div>
-                    <h3>Submit Your Idea</h3>
-                    <p>Share your PCB concept, requirements, and specifications through our simple form</p>
+                    <i class="step-icon fas fa-lightbulb text-accent"></i>
+                    <h3>Consultation</h3>
+                    <p>Discuss your project requirements, specifications, and design goals with our expert team.</p>
                 </div>
+                
                 <div class="step">
                     <div class="step-number">2</div>
-                    <h3>Design Review</h3>
-                    <p>Our skilled PCB designers analyze your requirements and provide detailed feedback</p>
+                    <i class="step-icon fas fa-drafting-compass text-blue"></i>
+                    <h3>Design</h3>
+                    <p>Create detailed PCB layouts and schematics using industry-standard design software.</p>
                 </div>
+                
                 <div class="step">
                     <div class="step-number">3</div>
-                    <h3>Design Creation</h3>
-                    <p>We bring your ideas to life using advanced PCB design software and best practices</p>
+                    <i class="step-icon fas fa-search text-emerald"></i>
+                    <h3>Review</h3>
+                    <p>Thorough design review and optimization to ensure manufacturability and performance.</p>
                 </div>
+                
                 <div class="step">
                     <div class="step-number">4</div>
+                    <i class="step-icon fas fa-download text-purple"></i>
                     <h3>Delivery</h3>
-                    <p>Receive your completed PCB design files ready for manufacturing</p>
+                    <p>Final design files delivered in your preferred format, ready for manufacturing.</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="submit" class="container">
-            <div class="submission-form">
-                <h2 style="text-align: center; margin-bottom: 2rem; color: #333;" data-i18n="formTitle">Submit Your PCB Idea</h2>
-<form id="pcbForm" action="https://formspree.io/f/mrbllabp" method="POST">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="name">Full Name *</label>
-                                <input type="text" id="name" name="name" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email Address *</label>
-                                <input type="email" id="email" name="email" required>
-                            </div>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="company">Company/Organization</label>
-                                <input type="text" id="company" name="company">
-                            </div>
-                        </div>
-
+    <!-- Project Form Section -->
+    <section id="submit" class="form-section section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Submit Your PCB Project</h2>
+                <p>Ready to get started? Fill out the form below and our team will get back to you within 24 hours</p>
+            </div>
+            
+            <div class="form-container">
+                <form id="project-form" action="https://formspree.io/f/mrbllabp" method="POST">
+                    <div class="form-row">
                         <div class="form-group">
-                            <label for="project-title">Project Title *</label>
-                            <input type="text" id="project-title" name="project-title" placeholder="e.g., Arduino-based Temperature Monitor" required>
+                            <label for="firstName">First Name *</label>
+                            <input type="text" id="firstName" name="firstName" required>
                         </div>
-
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="pcb-type">PCB Type *</label>
-                                <select id="pcb-type" name="pcb-type" required>
-                                    <option value="">Select PCB Type</option>
-                                    <option value="single-layer">Single Layer</option>
-                                    <option value="double-layer">Double Layer</option>
-                                    <option value="multi-layer">Multi Layer (4+)</option>
-                                    <option value="flexible">Flexible PCB</option>
-                                    <option value="not-sure">Not Sure</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="complexity">Project Complexity *</label>
-                                <select id="complexity" name="complexity" required>
-                                    <option value="">Select Complexity</option>
-                                    <option value="simple">Simple (Basic circuits)</option>
-                                    <option value="moderate">Moderate (Mixed signals)</option>
-                                    <option value="complex">Complex (High-speed, RF)</option>
-                                </select>
-                            </div>
-                        </div>
-
                         <div class="form-group">
-                            <label for="description">Project Description *</label>
-                            <textarea id="description" name="description" rows="5" placeholder="Describe your PCB idea, functionality, components needed, size constraints, and any specific requirements..." required></textarea>
+                            <label for="lastName">Last Name *</label>
+                            <input type="text" id="lastName" name="lastName" required>
                         </div>
-
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-row">
                         <div class="form-group">
-                            <label for="timeline">Desired Timeline *</label>
-                            <select id="timeline" name="timeline" required>
-                                <option value="">Select Timeline</option>
-                                <option value="rush">Rush (1-3 days)</option>
-                                <option value="standard">Standard (1-2 weeks)</option>
-                                <option value="flexible">Flexible (2+ weeks)</option>
+                            <label for="projectName">Project Name *</label>
+                            <input type="text" id="projectName" name="projectName" placeholder="Smart IoT Sensor Board" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="projectType">Project Type *</label>
+                            <select id="projectType" name="projectType" required>
+                                <option value="">Select project type</option>
+                                <option value="prototype">Prototype</option>
+                                <option value="small-batch">Small Batch (1-100)</option>
+                                <option value="medium-batch">Medium Batch (100-1000)</option>
+                                <option value="large-batch">Large Batch (1000+)</option>
                             </select>
                         </div>
-
+                    </div>
+                    
+                    <div class="form-row">
                         <div class="form-group">
-                            <label for="additional-info">Additional Information</label>
-                            <textarea id="additional-info" name="additional-info" rows="3" placeholder="Any additional requirements, constraints, or questions..."></textarea>
+                            <label for="boardLayers">Board Layers</label>
+                            <select id="boardLayers" name="boardLayers">
+                                <option value="2">2 Layer</option>
+                                <option value="4">4 Layer</option>
+                                <option value="6">6 Layer</option>
+                                <option value="8">8 Layer</option>
+                                <option value="custom">Custom</option>
+                            </select>
                         </div>
-
                         <div class="form-group">
-                            <label for="file-upload">Upload Reference Files (schematics, images, PDFs)</label>
-                            <input type="file" id="file-upload" name="file-upload" multiple>
+                            <label for="boardSize">Board Size (mm)</label>
+                            <input type="text" id="boardSize" name="boardSize" placeholder="50 x 30">
                         </div>
-
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="projectDescription">Project Description *</label>
+                        <textarea id="projectDescription" name="projectDescription" rows="4" 
+                                  placeholder="Describe your PCB design requirements, circuit specifications, component requirements, and any special design considerations..." required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Reference Files (Optional)</label>
+                        <div class="file-upload">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Upload reference materials, sketches, or specifications</p>
+                            <p style="font-size: 0.9rem; color: #666;">Supported formats: .pdf, .png, .jpg, .txt, .zip (Max 10MB)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
                         <div class="form-group">
-                            <label for="star-rating">Rate Our Service *</label>
-                            <div id="star-rating" class="star-rating">
-                                <span class="star" data-value="1">★</span>
-                                <span class="star" data-value="2">★</span>
-                                <span class="star" data-value="3">★</span>
-                                <span class="star" data-value="4">★</span>
-                                <span class="star" data-value="5">★</span>
-                                <input type="hidden" name="service-rating" id="service-rating" value="0" required>
-                            </div>
+                            <label for="timeline">Delivery Timeline</label>
+                            <select id="timeline" name="timeline">
+                                <option value="">Select timeline</option>
+                                <option value="rush">Rush (1-3 days)</option>
+                                <option value="standard">Standard (1-2 weeks)</option>
+                                <option value="flexible">Flexible (2-4 weeks)</option>
+                            </select>
                         </div>
-
-                    <button type="submit" class="submit-btn">Submit PCB Idea</button>
+                        <div class="form-group">
+                            <label for="budget">Budget Range</label>
+                            <select id="budget" name="budget">
+                                <option value="">Select budget range</option>
+                                <option value="under-500">Under $500</option>
+                                <option value="500-1000">$500 - $1,000</option>
+                                <option value="1000-5000">$1,000 - $5,000</option>
+                                <option value="over-5000">Over $5,000</option>
+                            </select>
+                            <p style="font-size:0.9rem;color:#666;margin-top:0.5rem;">
+                                Note: This budget is for your components, not for our design service fees.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="additionalNotes">Additional Notes</label>
+                        <textarea id="additionalNotes" name="additionalNotes" rows="3" 
+                                  placeholder="Any additional information or special requirements..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        Submit Project Request
+                    </button>
                 </form>
             </div>
-        </section>
-
-        <section id="ratings" class="container">
-    <div class="ratings-display">
-        <h2 style="text-align:center; color:#223a5e; margin-bottom:1rem;">User Ratings</h2>
-        <p style="text-align:center; color:#333; margin-bottom:1rem;">Professional PCB Design Services</p>
-        <div id="average-rating" class="star-rating" style="justify-content:center;">
-            <span class="star" data-value="1">★</span>
-            <span class="star" data-value="2">★</span>
-            <span class="star" data-value="3">★</span>
-            <span class="star" data-value="4">★</span>
-            <span class="star" data-value="5">★</span>
         </div>
-        <div id="rating-info" style="text-align:center; color:#333; font-size:1.1rem; margin-top:0.5rem;">Average: <span id="avg-value">4.9</span> / 5 (<span id="total-ratings">10</span> verified reviews)</div>
-        <div style="text-align:center; margin-top:1.5rem;">
-            <p style="color:#333; font-size:0.9rem; margin-bottom:0.5rem;">🏆 Successfully Completed 10+ Projects Since 2025</p>
-            <p style="color:#333; font-size:0.9rem; margin-bottom:0.5rem;">⚡ Average Response Time: 12-24 Hours</p>
-            <p style="color:#333; font-size:0.9rem; margin-bottom:0.5rem;">💪 We have a very busy schedule, still we find a way out</p>
-        </div>
-    </div>
-</section>
-    </main>
+    </section>
 
-
-
-    <footer id="contact">
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
         <div class="container">
-            <h3>Tester Chip</h3>
-            <p data-i18n="footerDesc">Professional PCB Design Services Since 2024</p>
-            <div style="margin: 1rem 0;">
-                <p style="margin-bottom: 0.5rem;">🏢 Tester Chip Electronics</p>
-                <p style="margin-bottom: 0.5rem;">� testerofscratchcode@gmail.com</p>
-                <p style="margin-bottom: 0.5rem;">🔒 Secure Project Data Handling</p>
+            <div class="section-header">
+                <h2>Get in Touch</h2>
+                <p>Have questions? Our team is here to help you succeed</p>
             </div>
-            <p data-i18n="footerCopy">&copy; 2025 Tester Chip. All rights reserved. | <a href="#privacy" style="color:white;">Privacy Policy</a> | <a href="#terms" style="color:white;">Terms of Service</a></p>
+            
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <i class="fas fa-envelope text-accent"></i>
+                    <h3>Email Us</h3>
+                    <p>testerofscratchcode@gmail.com</p>
+                </div>
+                
+                <div class="contact-card">
+                    <i class="fas fa-microchip text-emerald"></i>
+                    <h3>Specialization</h3>
+                    <p>Digital PCB Design</p>
+                </div>
+                
+                <div class="contact-card">
+                    <i class="fas fa-clock text-blue"></i>
+                    <h3>Response Time</h3>
+                    <p>24-48 hours</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-brand">
+                        <i class="fas fa-microchip"></i>
+                        <span>Tester Chip</span>
+                    </div>
+                    <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 1rem; max-width: 400px;">
+                        Professional digital PCB design services. Transform your electronic innovations into reality with expert layout and schematic design.
+                    </p>
+                    <a href="mailto:testerofscratchcode@gmail.com" style="color: rgba(255, 255, 255, 0.7); text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; word-wrap: break-word; word-break: break-all; overflow-wrap: break-word;">
+                        <i class="fas fa-envelope"></i>
+                        <span style="word-wrap: break-word; word-break: break-all; overflow-wrap: break-word;">Contact Us</span>
+                    </a>
+                </div>
+                
+                <div>
+                    <div class="footer-links">
+                        <h3>Services</h3>
+                        <a href="#">PCB Layout Design</a>
+                        <a href="#">Schematic Design</a>
+                        <a href="#">Design Review</a>
+                        <a href="#">Design Consultation</a>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="footer-links">
+                        <h3>Company</h3>
+                        <a href="#">About Us</a>
+                        <a href="#contact">Contact</a>
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2024 Tester Chip. All rights reserved.</p>
+            </div>
         </div>
     </footer>
+
+    <!-- Notification -->
+    <div id="notification" class="notification">
+        <i class="fas fa-check-circle"></i>
+        <span id="notification-text">Project submitted successfully!</span>
+        <button onclick="hideNotification()" style="background: none; border: none; color: white; margin-left: 10px; cursor: pointer;">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
     <script>
-        // Handle form submission with AJAX, including file upload
-        document.addEventListener('DOMContentLoaded', function() {
-            var form = document.getElementById('pcbForm');
-            if (form) {
-                form.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    var formData = new FormData(form);
-                    // Add star rating to the email message
-                    var starRating = document.getElementById('service-rating').value;
-                    if (starRating && starRating !== "0") {
-                        formData.append("star-rating", starRating);
-                    }
-                    var xhr = new XMLHttpRequest();
-                    xhr.open('POST', form.action);
-                    xhr.setRequestHeader('Accept', 'application/json');
-                    xhr.onreadystatechange = function() {
-                        if (xhr.readyState === XMLHttpRequest.DONE) {
-                            if (xhr.status === 200) {
-                                form.reset();
-                                // Optionally, you can scroll to the form or keep focus here
-                            } else {
-                                alert('There was an error submitting the form. Please try again.');
-                            }
-                        }
-                    };
-                    xhr.send(formData);
-                });
-            }
+        // Theme toggle functionality
+        let isDark = false;
 
-            // Multi-language support
-            var translations = {
-                en: {
-                    navHome: "Home",
-                    navServices: "Services",
-                    navSubmit: "Submit Idea",
-                    navContact: "Contact",
-                    heroTitle: "Transform Your PCB Ideas into Reality",
-                    heroDesc: "Professional digital PCB design services that bring your electronic concepts to life",
-                    heroCTA: "Submit Your Idea",
-                    feature1Title: "Custom PCB Design",
-                    feature1Desc: "Transform your ideas into professional PCB layouts with industry-standard tools and expertise",
-                    feature2Title: "Fast Turnaround",
-                    feature2Desc: "Get your digital PCB designs delivered quickly without compromising on quality",
-                    feature3Title: "Precision Engineering",
-                    feature3Desc: "Every design is crafted with attention to detail, ensuring optimal performance and reliability",
-                    howItWorks: "How It Works",
-                    formTitle: "Submit Your PCB Idea",
-                    footerDesc: "Transforming Ideas into Digital PCB Designs",
-                    footerCopy: "© 2025 Tester Chip. All rights reserved."
-                },
-                hi: {
-                    navHome: "होम",
-                    navServices: "सेवाएँ",
-                    navSubmit: "पीसीबी आइडिया सबमिट करें",
-                    navContact: "संपर्क करें",
-                    heroTitle: "अपने पीसीबी विचारों को वास्तविकता में बदलें",
-                    heroDesc: "पेशेवर डिजिटल पीसीबी डिजाइन सेवाएँ जो आपके इलेक्ट्रॉनिक विचारों को जीवन देती हैं",
-                    heroCTA: "आइडिया सबमिट करें",
-                    feature1Title: "कस्टम पीसीबी डिजाइन",
-                    feature1Desc: "अपने विचारों को उद्योग-मानक टूल्स और विशेषज्ञता के साथ पेशेवर पीसीबी लेआउट में बदलें",
-                    feature2Title: "तेज़ डिलीवरी",
-                    feature2Desc: "गुणवत्ता से समझौता किए बिना अपने डिजिटल पीसीबी डिज़ाइन जल्दी प्राप्त करें",
-                    feature3Title: "सटीक इंजीनियरिंग",
-                    feature3Desc: "हर डिज़ाइन को ध्यानपूर्वक तैयार किया जाता है, जिससे सर्वोत्तम प्रदर्शन और विश्वसनीयता सुनिश्चित होती है",
-                    howItWorks: "कैसे काम करता है",
-                    formTitle: "अपना पीसीबी आइडिया सबमिट करें",
-                    footerDesc: "विचारों को डिजिटल पीसीबी डिज़ाइन में बदलना",
-                    footerCopy: "© 2025 टेस्टर चिप. सर्वाधिकार सुरक्षित."
-                }
-            };
-            var switcher = document.getElementById('languageSwitcher');
-            function setLanguage(lang) {
-                var dict = translations[lang] || translations['en'];
-                document.querySelectorAll('[data-i18n]').forEach(function(el) {
-                    var key = el.getAttribute('data-i18n');
-                    if (dict[key]) {
-                        el.textContent = dict[key];
-                    }
-                });
-            }
-            if (switcher) {
-                switcher.addEventListener('change', function() {
-                    setLanguage(this.value);
-                });
-                setLanguage(switcher.value);
-            }
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Add parallax effect to hero section
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const hero = document.querySelector('.hero');
-            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-        });
-
-        // Add animation on scroll for feature cards
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animation = 'slideInUp 0.8s ease-out';
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.feature-card, .step').forEach(card => {
-            observer.observe(card);
-        });
-
-        // Star rating logic
-    document.addEventListener('DOMContentLoaded', function() {
-        var stars = document.querySelectorAll('.star-rating .star');
-        var ratingInput = document.getElementById('service-rating');
-        stars.forEach(function(star) {
-            star.addEventListener('mouseover', function() {
-                var val = parseInt(star.getAttribute('data-value'));
-                stars.forEach(function(s, i) {
-                    s.classList.toggle('selected', i < val);
-                });
-            });
-            star.addEventListener('mouseout', function() {
-                var current = parseInt(ratingInput.value);
-                stars.forEach(function(s, i) {
-                    s.classList.toggle('selected', i < current);
-                });
-            });
-            star.addEventListener('click', function() {
-                var val = parseInt(star.getAttribute('data-value'));
-                ratingInput.value = val;
-                stars.forEach(function(s, i) {
-                    s.classList.toggle('selected', i < val);
-                });
-            });
-        });
-    });
-
-    // Ratings display logic (demo, not persistent)
-    var avgValue = 4.9; // Demo average rating - showing high satisfaction despite busy schedule
-    var totalRatings = 10; // Demo total ratings - showing high volume of completed projects
-    function updateAverageRatingDisplay() {
-        var avg = Math.round(avgValue);
-        var stars = document.querySelectorAll('#average-rating .star');
-        stars.forEach(function(star, i) {
-            star.classList.remove('selected');
-            if (i < avg) {
-                star.classList.add('selected');
-            }
-        });
-        document.getElementById('avg-value').textContent = avgValue.toFixed(1);
-        document.getElementById('total-ratings').textContent = totalRatings;
-    }
-    document.addEventListener('DOMContentLoaded', updateAverageRatingDisplay);
-    // Dark mode toggle logic
-    document.addEventListener('DOMContentLoaded', function() {
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        const darkModeStyle = document.getElementById('dark-mode-style');
-        let darkMode = false;
-        function setDarkMode(on) {
-            darkMode = on;
-            if (on) {
-                darkModeStyle.textContent = `
-                body {
-                    background: linear-gradient(135deg, #181c2b 0%, #22223b 100%) !important;
-                    color: #ffffff !important;
-                }
-                .container {
-                    background: transparent !important;
-                    color: #ffffff !important;
-                }
-                .submission-form {
-                    background: rgba(40, 44, 52, 0.95) !important;
-                    color: #ffffff !important;
-                    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-                    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
-                }
-                .submission-form h2 {
-                    color: #ffffff !important;
-                }
-                .form-group label {
-                    color: #ffffff !important;
-                    font-weight: 600 !important;
-                }
-                .ratings-display {
-                    background: rgba(40, 44, 52, 0.95) !important;
-                    color: #ffffff !important;
-                    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-                }
-                .ratings-display h2 {
-                    color: #ffffff !important;
-                }
-                #rating-info {
-                    color: #ffffff !important;
-                }
-                .ratings-display p {
-                    color: #ffffff !important;
-                }
-                header, .feature-card, .step, footer {
-                    background: rgba(30, 30, 40, 0.95) !important;
-                    color: #ffffff !important;
-                    border-color: rgba(255, 255, 255, 0.2) !important;
-                }
-                .form-group input, .form-group textarea, .form-group select, .cool-language-select {
-                    background: rgba(40, 44, 52, 0.95) !important;
-                    color: #ffffff !important;
-                    border: 1px solid rgba(255, 255, 255, 0.3) !important;
-                }
-                .form-group input::placeholder, .form-group textarea::placeholder {
-                    color: #cccccc !important;
-                }
-                .form-group input:focus, .form-group textarea:focus, .form-group select:focus, .cool-language-select:focus {
-                    border-color: #667eea !important;
-                    box-shadow: 0 0 10px rgba(102, 126, 234, 0.3) !important;
-                    background: rgba(50, 54, 62, 0.95) !important;
-                }
-                .submit-btn, #darkModeToggle {
-                    background: linear-gradient(90deg, #223a5e 0%, #764ba2 100%) !important;
-                    color: #ffffff !important;
-                    border-radius: 50px !important;
-                    font-weight: 600 !important;
-                    letter-spacing: 0.5px !important;
-                    transition: all 0.3s !important;
-                    box-shadow: 0 4px 15px rgba(102,126,234,0.10) !important;
-                    animation: slideInUp 1s ease-out 0.2s !important;
-                    display: flex !important;
-                    align-items: center !important;
-                    gap: 0.5rem !important;
-                    border: none !important;
-                    padding: 0.5rem 1.5rem !important;
-                }
-                .submit-btn:hover, #darkModeToggle:hover {
-                    background: linear-gradient(90deg, #764ba2 0%, #223a5e 100%) !important;
-                    border: 1px solid rgba(255, 255, 255, 0.3) !important;
-                }
-                .star {
-                    color: #666666 !important;
-                }
-                .star.selected {
-                    color: #FFD700 !important;
-                }
-                .nav-links a, .nav-darkmode-btn {
-                    color: #ffffff !important;
-                    text-shadow: 0 2px 8px #223a5e, 0 1px 0 #000 !important;
-                    background: none !important;
-                    border-radius: 20px !important;
-                    font-weight: 600 !important;
-                    letter-spacing: 0.5px !important;
-                    transition: all 0.3s !important;
-                    animation: slideInUp 1s ease-out !important;
-                }
-                .nav-links a:hover, .nav-darkmode-btn:hover {
-                    background: rgba(255,255,255,0.2) !important;
-                    color: #ffffff !important;
-                    transform: translateY(-2px) !important;
-                }
-                .feature-icon {
-                    text-shadow: 0 2px 4px rgba(0,0,0,0.3) !important;
-                }
-                `;
-                darkModeToggle.textContent = '☀️ Light Mode';
+        function toggleTheme() {
+            isDark = !isDark;
+            const body = document.body;
+            const icon = document.getElementById('theme-icon');
+            
+            if (isDark) {
+                body.classList.add('dark');
+                icon.className = 'fas fa-sun';
             } else {
-                darkModeStyle.textContent = '';
-                darkModeToggle.textContent = '🌙 Dark Mode';
+                body.classList.remove('dark');
+                icon.className = 'fas fa-moon';
             }
         }
-        darkModeToggle.addEventListener('click', function() {
-            setDarkMode(!darkMode);
-            if (window.localStorage) {
-                localStorage.setItem('darkMode', darkMode ? 'true' : 'false');
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('active');
+        }
+
+        // Smooth scrolling
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+                // Close mobile menu if open
+                document.getElementById('mobile-menu').classList.remove('active');
             }
+        }
+
+        // Form submission
+        document.getElementById('project-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const formData = new FormData(this);
+
+    try {
+        const response = await fetch(this.action, {
+            method: this.method,
+            body: formData,
+            headers: { 'Accept': 'application/json' }
         });
-        if (window.localStorage && localStorage.getItem('darkMode') === 'true') {
-            setDarkMode(true);
+
+        if (response.ok) {
+            showNotification("Project submitted successfully! We'll get back to you within 24 hours.");
+            this.reset();
+        } else {
+            showNotification("Oops! There was a problem submitting your project.");
         }
-    });
+    } catch (error) {
+        showNotification("Network error. Please try again later.");
+    }
+});// Show notification
+            showNotification('Project submitted successfully! We\'ll get back to you within 24 hours.');
+            
+            // Reset form
+            this.reset();
+            
+            console.log('Form submitted:', data);
+        });
+
+        // Notification functions
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            const text = document.getElementById('notification-text');
+            text.textContent = message;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                hideNotification();
+            }, 5000);
+        }
+
+        function hideNotification() {
+            document.getElementById('notification').classList.remove('show');
+        }
+
+        // Add scroll animations
+        function addScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements for animation
+            const animatedElements = document.querySelectorAll('.feature-card, .step, .contact-card');
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        }
+
+        // Initialize animations when page loads
+        document.addEventListener('DOMContentLoaded', addScrollAnimations);
     </script>
 </body>
-</html>
-</body>
-</html>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tester Chip - Professional Digital PCB Design Services</title>
+    <meta name="description" content="Professional digital PCB design services - Expert circuit board layout and schematic design for your electronic projects">
+    <meta name="keywords" content="PCB design, circuit board layout, schematic design, electronics design, digital PCB services">
+    
+    <!-- Open Graph tags -->
+    <meta property="og:title" content="Tester Chip - Professional Digital PCB Design Services">
+    <meta property="og:description" content="Expert digital PCB design services. High-quality circuit board layouts and schematics for your electronic innovations.">
+    <meta property="og:type" content="website">
+    
+    <!-- Fonts and Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gradient-start: #4f46e5;
+            --gradient-middle: #7c3aed;
+            --gradient-end: #06b6d4;
+            --accent-gold: #f59e0b;
+            --accent-orange: #f97316;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        .dark {
+            --gradient-start: #1e1b4b;
+            --gradient-middle: #312e81;
+            --gradient-end: #1e40af;
+            --glass-bg: rgba(0, 0, 0, 0.2);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-middle) 50%, var(--gradient-end) 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            width: 100%;
+        }
+
+        /* Ensure smooth layout on all screen sizes */
+        .section {
+            width: 100%;
+            overflow-x: hidden;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+        }
+
+        /* Header Styles */
+        header {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 0 2px 8px #223a5e, 0 1px 0 #000;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            color: var(--accent-gold);
+            margin-right: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a, .nav-links button {
+            color: #fff;
+            text-decoration: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            text-shadow: 0 2px 8px #223a5e, 0 1px 0 #000;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links a:hover, .nav-links button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .theme-toggle {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(102,126,234,0.10);
+            cursor: pointer;
+            margin-left: 1rem;
+        }
+
+        .theme-toggle:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(102,126,234,0.18);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: var(--glass-bg);
+            color: #fff;
+            border: none;
+            padding: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: none;
+            opacity: 0;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: slideInUp 1s ease-out;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-orange));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: slideInUp 1s ease-out 0.3s both;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            animation: slideInUp 1s ease-out 0.6s both;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--accent-gold), var(--accent-orange));
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .btn-secondary {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 1rem 2rem;
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px) scale(1.05);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 4rem 0;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            color: white;
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px) scale(1.08);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            z-index: 10;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .star-rating {
+            display: flex;
+            gap: 0.5rem;
+            margin: 1rem 0;
+            justify-content: center;
+        }
+
+        .star {
+            font-size: 2rem;
+            color: #ddd;
+            cursor: pointer;
+            transition: transform 0.3s ease, color 0.3s;
+        }
+
+        .star.active {
+            color: var(--accent-gold);
+        }
+
+        /* Unified zoom effect for all relevant elements */
+        .star:hover,
+        .feature-icon:hover,
+        .step-icon:hover,
+        .logo:hover,
+        .nav-links a:hover,
+        .file-upload:hover {
+            transform: scale(1.15);
+            transition: transform 0.3s ease, color 0.3s;
+        }
+
+        .star:hover {
+            color: var(--accent-gold);
+        }
+
+        /* Process Section */
+        .process {
+            padding: 4rem 0;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .step {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            color: white;
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .step:hover {
+            transform: translateY(-10px) scale(1.08);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            z-index: 10;
+        }
+
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, var(--accent-gold), var(--accent-orange));
+            color: #333;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .step-icon {
+            font-size: 3rem;
+            margin: 1rem 0;
+            display: block;
+        }
+
+        .step h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Form Section */
+        .form-section {
+            padding: 4rem 0;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+        }
+
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
+            transform: scale(1.02);
+        }
+
+        .form-group input:hover,
+        .form-group textarea:hover,
+        .form-group select:hover {
+            transform: scale(1.01);
+            border-color: #bbb;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .file-upload {
+            border: 2px dashed #ddd;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .file-upload:hover {
+            border-color: #667eea;
+            background: rgba(102, 126, 234, 0.05);
+        }
+
+        .file-upload i {
+            font-size: 3rem;
+            color: #999;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 1rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 4rem 0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            color: white;
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+            position: relative;
+            word-wrap: break-word;
+            word-break: break-all;
+            overflow-wrap: break-word;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px) scale(1.05);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            z-index: 10;
+        }
+
+        .contact-card p {
+            word-wrap: break-word;
+            word-break: break-all;
+            overflow-wrap: break-word;
+            hyphens: auto;
+        }
+
+        .contact-card i {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .contact-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 3rem 0 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand i {
+            font-size: 1.5rem;
+            color: var(--accent-gold);
+        }
+
+        .footer-brand span {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links h3 {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            display: block;
+            padding: 0.25rem 0;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Animations */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-slide-up {
+            animation: slideInUp 0.6s ease-out;
+        }
+
+        /* Zoom effects for various elements */
+        .feature-icon:hover, .step-icon:hover {
+            transform: scale(1.15);
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            transform: scale(1.1);
+        }
+
+        .file-upload:hover {
+            transform: scale(1.02);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .mobile-menu.active {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 10px;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+                padding: 0 10px;
+            }
+
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+
+            .section-header p {
+                padding: 0 10px;
+            }
+
+            .form-container {
+                padding: 1.5rem 1rem;
+                margin: 0 5px;
+            }
+
+            .btn-primary, .btn-secondary {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+
+            .feature-card, .step, .contact-card {
+                padding: 1.2rem;
+                word-wrap: break-word;
+                word-break: break-all;
+                overflow-wrap: break-word;
+            }
+
+            .contact-card p {
+                font-size: 0.9rem;
+                line-height: 1.4;
+            }
+
+            .footer-content {
+                padding: 0 10px;
+            }
+        }
+
+        /* Dark mode styles */
+        .dark body {
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-middle) 50%, var(--gradient-end) 100%);
+        }
+
+        /* Color classes */
+        .text-accent { color: var(--accent-gold); }
+        .text-emerald { color: #10b981; }
+        .text-blue { color: #3b82f6; }
+        .text-purple { color: #8b5cf6; }
+        .text-red { color: #ef4444; }
+        .text-green { color: #22c55e; }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #22c55e, #16a34a);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .notification.show {
+            display: flex;
+            animation: slideInUp 0.3s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <i class="fas fa-microchip"></i>
+                <span>Tester Chip</span>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="#features" onclick="scrollToSection('features')">Features</a></li>
+                <li><a href="#process" onclick="scrollToSection('process')">Process</a></li>
+                <li><a href="#submit" onclick="scrollToSection('submit')">Submit Project</a></li>
+                <li><a href="#contact" onclick="scrollToSection('contact')">Contact</a></li>
+            </ul>
+            
+            <div style="display: flex; align-items: center;">
+                <button class="theme-toggle" onclick="toggleTheme()">
+                    <i class="fas fa-moon" id="theme-icon"></i>
+                </button>
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <div class="mobile-menu" id="mobile-menu">
+                <a href="#features" onclick="scrollToSection('features')">Features</a>
+                <a href="#process" onclick="scrollToSection('process')">Process</a>
+                <a href="#submit" onclick="scrollToSection('submit')">Submit Project</a>
+                <a href="#contact" onclick="scrollToSection('contact')">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero section">
+        <div class="container">
+            <h1>
+                Transform Your <span style="color: #f59e0b;">PCB</span> Ideas into Reality
+            </h1>
+            <p>
+                Professional digital PCB design services. We specialize in creating high-quality circuit board layouts and schematics for your electronic projects.
+            </p>
+            <div class="hero-buttons">
+                <a href="#submit" class="btn-primary" onclick="scrollToSection('submit')">
+                    <span>Start Your Project</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="#process" class="btn-secondary" onclick="scrollToSection('process')">
+                    <span>Learn More</span>
+                    <i class="fas fa-play"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Features</h2>
+                <p>Professional digital PCB design solutions with cutting-edge software and industry expertise</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="feature-icon fas fa-microchip text-accent"></i>
+                    <h3>Professional Design</h3>
+                    <p>Expert digital PCB design services using industry-standard software and best practices for optimal layouts.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="feature-icon fas fa-shipping-fast text-emerald"></i>
+                    <h3>Fast Delivery</h3>
+                    <p>Quick turnaround on digital design files, getting your PCB layouts ready for manufacturing faster.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="feature-icon fas fa-award text-blue"></i>
+                    <h3>Quality Design</h3>
+                    <p>Rigorous design review processes ensure every PCB layout meets the highest technical standards.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="feature-icon fas fa-tools text-purple"></i>
+                    <h3>Custom Layouts</h3>
+                    <p>Tailored PCB designs to meet your specific project requirements and technical specifications.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="feature-icon fas fa-headset text-red"></i>
+                    <h3>Design Support</h3>
+                    <p>Dedicated design support team available throughout your project for guidance and revisions.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="feature-icon fas fa-dollar-sign text-green"></i>
+                    <h3>Affordable Rates</h3>
+                    <p>Cost-effective digital design services without compromising on quality and technical excellence.</p>
+                </div>
+
+                <div class="feature-card">
+                    <i class="feature-icon fas fa-tachometer-alt text-accent"></i>
+                    <h3>Complexity Assessment</h3>
+                    <p>We evaluate your project's technical complexity to ensure accurate planning, pricing, and delivery timelines.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="process section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Process</h2>
+                <p>From initial consultation to final design delivery, we ensure a smooth and efficient PCB design process</p>
+            </div>
+            
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <i class="step-icon fas fa-lightbulb text-accent"></i>
+                    <h3>Consultation</h3>
+                    <p>Discuss your project requirements, specifications, and design goals with our expert team.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <i class="step-icon fas fa-drafting-compass text-blue"></i>
+                    <h3>Design</h3>
+                    <p>Create detailed PCB layouts and schematics using industry-standard design software.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <i class="step-icon fas fa-search text-emerald"></i>
+                    <h3>Review</h3>
+                    <p>Thorough design review and optimization to ensure manufacturability and performance.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <i class="step-icon fas fa-download text-purple"></i>
+                    <h3>Delivery</h3>
+                    <p>Final design files delivered in your preferred format, ready for manufacturing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Form Section -->
+    <section id="submit" class="form-section section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Submit Your PCB Project</h2>
+                <p>Ready to get started? Fill out the form below and our team will get back to you within 24 hours</p>
+            </div>
+            
+            <div class="form-container">
+                <form id="project-form" action="https://formspree.io/f/mrbllabp" method="POST">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name *</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name *</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="projectName">Project Name *</label>
+                            <input type="text" id="projectName" name="projectName" placeholder="Smart IoT Sensor Board" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="projectType">Project Type *</label>
+                            <select id="projectType" name="projectType" required>
+                                <option value="">Select project type</option>
+                                <option value="prototype">Prototype</option>
+                                <option value="small-batch">Small Batch (1-100)</option>
+                                <option value="medium-batch">Medium Batch (100-1000)</option>
+                                <option value="large-batch">Large Batch (1000+)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="boardLayers">Board Layers</label>
+                            <select id="boardLayers" name="boardLayers">
+                                <option value="2">2 Layer</option>
+                                <option value="4">4 Layer</option>
+                                <option value="6">6 Layer</option>
+                                <option value="8">8 Layer</option>
+                                <option value="custom">Custom</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="boardSize">Board Size (mm)</label>
+                            <input type="text" id="boardSize" name="boardSize" placeholder="50 x 30">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="projectDescription">Project Description *</label>
+                        <textarea id="projectDescription" name="projectDescription" rows="4" 
+                                  placeholder="Describe your PCB design requirements, circuit specifications, component requirements, and any special design considerations..." required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Reference Files (Optional)</label>
+                        <div class="file-upload">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Upload reference materials, sketches, or specifications</p>
+                            <p style="font-size: 0.9rem; color: #666;">Supported formats: .pdf, .png, .jpg, .txt, .zip (Max 10MB)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="timeline">Delivery Timeline</label>
+                            <select id="timeline" name="timeline">
+                                <option value="">Select timeline</option>
+                                <option value="rush">Rush (1-3 days)</option>
+                                <option value="standard">Standard (1-2 weeks)</option>
+                                <option value="flexible">Flexible (2-4 weeks)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="budget">Budget Range</label>
+                            <select id="budget" name="budget">
+                                <option value="">Select budget range</option>
+                                <option value="under-500">Under $500</option>
+                                <option value="500-1000">$500 - $1,000</option>
+                                <option value="1000-5000">$1,000 - $5,000</option>
+                                <option value="over-5000">Over $5,000</option>
+                            </select>
+                            <p style="font-size:0.9rem;color:#666;margin-top:0.5rem;">
+                                Note: This budget is for your components, not for our design service fees.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="additionalNotes">Additional Notes</label>
+                        <textarea id="additionalNotes" name="additionalNotes" rows="3" 
+                                  placeholder="Any additional information or special requirements..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        Submit Project Request
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Get in Touch</h2>
+                <p>Have questions? Our team is here to help you succeed</p>
+            </div>
+            
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <i class="fas fa-envelope text-accent"></i>
+                    <h3>Email Us</h3>
+                    <p>testerofscratchcode@gmail.com</p>
+                </div>
+                
+                <div class="contact-card">
+                    <i class="fas fa-microchip text-emerald"></i>
+                    <h3>Specialization</h3>
+                    <p>Digital PCB Design</p>
+                </div>
+                
+                <div class="contact-card">
+                    <i class="fas fa-clock text-blue"></i>
+                    <h3>Response Time</h3>
+                    <p>24-48 hours</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-brand">
+                        <i class="fas fa-microchip"></i>
+                        <span>Tester Chip</span>
+                    </div>
+                    <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 1rem; max-width: 400px;">
+                        Professional digital PCB design services. Transform your electronic innovations into reality with expert layout and schematic design.
+                    </p>
+                    <a href="mailto:testerofscratchcode@gmail.com" style="color: rgba(255, 255, 255, 0.7); text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; word-wrap: break-word; word-break: break-all; overflow-wrap: break-word;">
+                        <i class="fas fa-envelope"></i>
+                        <span style="word-wrap: break-word; word-break: break-all; overflow-wrap: break-word;">Contact Us</span>
+                    </a>
+                </div>
+                
+                <div>
+                    <div class="footer-links">
+                        <h3>Services</h3>
+                        <a href="#">PCB Layout Design</a>
+                        <a href="#">Schematic Design</a>
+                        <a href="#">Design Review</a>
+                        <a href="#">Design Consultation</a>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="footer-links">
+                        <h3>Company</h3>
+                        <a href="#">About Us</a>
+                        <a href="#contact">Contact</a>
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2024 Tester Chip. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notification -->
+    <div id="notification" class="notification">
+        <i class="fas fa-check-circle"></i>
+        <span id="notification-text">Project submitted successfully!</span>
+        <button onclick="hideNotification()" style="background: none; border: none; color: white; margin-left: 10px; cursor: pointer;">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <script>
+        // Theme toggle functionality
+        let isDark = false;
+
+        function toggleTheme() {
+            isDark = !isDark;
+            const body = document.body;
+            const icon = document.getElementById('theme-icon');
+            
+            if (isDark) {
+                body.classList.add('dark');
+                icon.className = 'fas fa-sun';
+            } else {
+                body.classList.remove('dark');
+                icon.className = 'fas fa-moon';
+            }
+        }
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('active');
+        }
+
+        // Smooth scrolling
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+                // Close mobile menu if open
+                document.getElementById('mobile-menu').classList.remove('active');
+            }
+        }
+
+        // Form submission
+        document.getElementById('project-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const formData = new FormData(this);
+
+    try {
+        const response = await fetch(this.action, {
+            method: this.method,
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+            showNotification("Project submitted successfully! We'll get back to you within 24 hours.");
+            this.reset();
+        } else {
+            showNotification("Oops! There was a problem submitting your project.");
+        }
+    } catch (error) {
+        showNotification("Network error. Please try again later.");
+    }
+});// Show notification
+            showNotification('Project submitted successfully! We\'ll get back to you within 24 hours.');
+            
+            // Reset form
+            this.reset();
+            
+            console.log('Form submitted:', data);
+        });
+
+        // Notification functions
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            const text = document.getElementById('notification-text');
+            text.textContent = message;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                hideNotification();
+            }, 5000);
+        }
+
+        function hideNotification() {
+            document.getElementById('notification').classList.remove('show');
+        }
+
+        // Add scroll animations
+        function addScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements for animation
+            const animatedElements = document.querySelectorAll('.feature-card, .step, .contact-card');
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        }
+
+        // Initialize animations when page loads
+        document.addEventListener('DOMContentLoaded', addScrollAnimations);
     </script>
 </body>
 </html>
