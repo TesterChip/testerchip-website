@@ -36,13 +36,11 @@
         }
 
         body.dark {
-          --gradient-start: #1e1b4b;
-          --gradient-middle: #312e81;
-          --gradient-end: #1e40af;
-          --glass-bg: rgba(0,0,0,0.2);
-          --glass-border: rgba(255,255,255,0.1);
-        }
-
+            --gradient-start: #1e1b4b;
+            --gradient-middle: #312e81;
+            --gradient-end: #1e40af;
+            --glass-bg: rgba(0, 0, 0, 0.2);
+            --glass-border: rgba(255, 255, 255, 0.1);
         }
 
         body {
@@ -1151,11 +1149,21 @@
     <script>
         // Theme toggle functionality
         let isDark = false;
+
         function toggleTheme() {
-          isDark = !isDark;
-          document.body.classList.toggle('dark', isDark);
-          document.getElementById('theme-icon').className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+            isDark = !isDark;
+            const body = document.body;
+            const icon = document.getElementById('theme-icon');
+            
+            if (isDark) {
+                body.classList.add('dark');
+                icon.className = 'fas fa-sun';
+            } else {
+                body.classList.remove('dark');
+                icon.className = 'fas fa-moon';
+            }
         }
+
         // Mobile menu toggle
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
