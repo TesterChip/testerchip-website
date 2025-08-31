@@ -1202,30 +1202,7 @@
     } catch (error) {
         showNotification("Network error. Please try again later.");
     }
-});// Show notification
-            showNotification('Project submitted successfully! We\'ll get back to you within 24 hours.');
-            
-            // Reset form
-            this.reset();
-            
-            console.log('Form submitted:', data);
-        });
-
-        // Notification functions
-        function showNotification(message) {
-            const notification = document.getElementById('notification');
-            const text = document.getElementById('notification-text');
-            text.textContent = message;
-            notification.classList.add('show');
-            
-            setTimeout(() => {
-                hideNotification();
-            }, 5000);
-        }
-
-        function hideNotification() {
-            document.getElementById('notification').classList.remove('show');
-        }
+});
 
         // Add scroll animations
         function addScrollAnimations() {
